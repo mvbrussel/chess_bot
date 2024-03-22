@@ -47,6 +47,7 @@ def reset():
     globals.to_square = None
 
 while run:
+    
     fps_clock.tick(30)
 
     draw_background(win=win)
@@ -62,44 +63,25 @@ while run:
             game_over_countdown = 50
         continue
 
-    if white_move and not human_white:
-        white.move(board=board, human_white=human_white)
-        white_move = not white_move
-
-    if not white_move and human_white:
-        black.move(board=board, human_white=human_white)
-        white_move = not white_move
-
-    events = pygame.event.get()
-    print(events)
-
-    for event in events:
-        if event.type == pygame.QUIT:
-            run = False
-            pygame.quit()
-
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            x, y = pygame.mouse.get_pos()
-
-            if 625 <= x <= 675 and 200 <= y <= 260: # Change sides
-                human_white = not human_white
-
-                if human_white:
-                    white = black 
-                    white.colour = 'white'
-                    black = black_ai 
-                else:
-                    black = white 
-                    black.colour = 'black'
-                    white = white_ai
-
-                reset()
-
-            elif 630 <= x <= 670 and 320 <= y <= 360: # Reset
-                reset()
+    if white_move is True:
         
-        if white_move and human_white and white.move(board=board, event=event, human_white=human_white):
-            white_move = not white_move
-        
-        elif not white_move and not human_white and black.move(board=board, event=event, human_white=human_white):
-            white_move = not white_move
+        events = pygame.event.get()   
+
+        for event in events:
+            
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                
+                x, y = pygame.mouse.get_pos()                
+
+                if 630 <= x <= 670 and 320 <= y <= 360: # Reset
+                    reset()
+            
+            if white_move and human_white and white.move(board=board, event=event, human_white=human_white):
+                white_move = not white_move
+            
+            elif not white_move and not human_white and black.move(board=board, event=event, human_white=human_white):
+                white_move = not white_move

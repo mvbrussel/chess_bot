@@ -12,7 +12,9 @@ class HumanPlayer:
         self.move_from_square = None
 
     def move(self, board, event, human_white):
+        
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            
             square = self.coordinates_to_square(coords=pygame.mouse.get_pos(), human_white=human_white)
             
             if self.move_from_square is None:
@@ -70,6 +72,7 @@ class HumanPlayer:
     
     @staticmethod
     def coordinates_to_square(coords, human_white):
+        # Finding coordinates and converting to letter
         letter = ord('a') + coords[0] // square_size
         number = coords[1] // square_size + 1
 
