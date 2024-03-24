@@ -8,23 +8,23 @@ board_colour = (107, 142, 35)
 square_size = 75
 
 #When running from the main file in terminal
-wp = pygame.image.load('chess_gui/images/white_pawn.gif')
-bp = pygame.image.load('chess_gui/images/black_pawn.gif')
-wn = pygame.image.load('chess_gui/images/white_knight.gif')
-bn = pygame.image.load('chess_gui/images/black_knight.gif')
-wb = pygame.image.load('chess_gui/images/white_bishop.gif')
-bb = pygame.image.load('chess_gui/images/black_bishop.gif')
-wr = pygame.image.load('chess_gui/images/white_rook.gif')
-br = pygame.image.load('chess_gui/images/black_rook.gif')
-wq = pygame.image.load('chess_gui/images/white_queen.gif')
-bq = pygame.image.load('chess_gui/images/black_queen.gif')
-wk = pygame.image.load('chess_gui/images/white_king.gif')
-bk = pygame.image.load('chess_gui/images/black_king.gif')
+wp = pygame.image.load('chess_game/images/white_pawn.gif')
+bp = pygame.image.load('chess_game/images/black_pawn.gif')
+wn = pygame.image.load('chess_game/images/white_knight.gif')
+bn = pygame.image.load('chess_game/images/black_knight.gif')
+wb = pygame.image.load('chess_game/images/white_bishop.gif')
+bb = pygame.image.load('chess_game/images/black_bishop.gif')
+wr = pygame.image.load('chess_game/images/white_rook.gif')
+br = pygame.image.load('chess_game/images/black_rook.gif')
+wq = pygame.image.load('chess_game/images/white_queen.gif')
+bq = pygame.image.load('chess_game/images/black_queen.gif')
+wk = pygame.image.load('chess_game/images/white_king.gif')
+bk = pygame.image.load('chess_game/images/black_king.gif')
 
-switch = pygame.image.load('chess_gui/images/switch.png')
+switch = pygame.image.load('chess_game/images/switch.png')
 switch = pygame.transform.scale(switch, (50, 60))
 
-restart = pygame.image.load('chess_gui/images/restart.png')
+restart = pygame.image.load('chess_game/images/restart.png')
 restart = pygame.transform.scale(restart, (40, 40))
 
 #When running in interactive window

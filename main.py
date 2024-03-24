@@ -1,9 +1,9 @@
 import pygame 
 import chess 
 
-from player import HumanPlayer, AIPlayer
-from draw import draw_background, draw_pieces
-import globals as globals
+from chess_game.human_player import HumanPlayer, AIPlayer
+from chess_game.draw_board import draw_background, draw_pieces
+from utils import globals
 
 #Initialize the variables
 SCREEN_WIDTH = 700
@@ -62,5 +62,5 @@ while run:
                 
     elif globals.white_move is False:
         
-        black.move(board=globals.board)
+        black.input_move(board=globals.board)
             

@@ -3,6 +3,8 @@
 /test_file.py
 /cleaned_data.pkl
 data/test_data.db
+saved_models/
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

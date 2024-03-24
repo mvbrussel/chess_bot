@@ -3,8 +3,8 @@ import pygame
 import random
 import chess
 
-from globals import square_size, white_move, board, selected_piece, selected_square
-import globals
+# from globals import square_size, white_move, board, selected_piece, selected_square
+from utils import globals
 
 
 class HumanPlayer:
@@ -15,13 +15,7 @@ class HumanPlayer:
 
     def move(self, board, event):
         
-        print('function being called')
-
-        
-
-            
-        print(globals.selected_square)
-        
+       
         #Get the corresponding square
         square = self.coordinates_to_square(coords=pygame.mouse.get_pos())
         
@@ -30,8 +24,7 @@ class HumanPlayer:
         
         #Find the piece at the square
         piece = board.piece_at(parsed_square)
-        print('the selected piece is: ' + str(piece))
-        # print('The piece is black: ' + str(piece.symbol().islower()))
+
         
         #When an empty square is clicked
         if piece is None: 
@@ -82,8 +75,8 @@ class HumanPlayer:
     def coordinates_to_square(coords):
         
         # Finding coordinates and converting to letter
-        letter = ord('a') + coords[0] // square_size
-        number = coords[1] // square_size + 1
+        letter = ord('a') + coords[0] // globals.square_size
+        number = coords[1] // globals.square_size + 1
 
         #Check if needed
         # if human_white:
@@ -99,19 +92,25 @@ class AIPlayer:
     def __init__(self):
         pass
 
-    def move(self, board):
+    def input_move(self, board):
         
         valid_proposed_move = False
         
         while valid_proposed_move is False:
             
             proposed_move_uci = input("Please enter a chess move in uci format: ")
+            
             proposed_move = chess.Move.from_uci(proposed_move_uci)
             
             if proposed_move in board.legal_moves:
                 board.push(proposed_move)
                 globals.white_move = True
                 valid_proposed_move = True
+                
+    
+                
+            
+                
             
         
 
