@@ -2,8 +2,7 @@
 /notes.txt
 /test_file.py
 /cleaned_data.pkl
-data/test_data.db
-saved_models/
+models/saved_models/
 data/
 move_prediction/notebooks/data_loading_new.ipynb
 move_prediction/notebooks/model_training.ipynb
