@@ -5,6 +5,8 @@
 data/test_data.db
 saved_models/
 data/
+move_prediction/notebooks/data_loading_new.ipynb
+move_prediction/notebooks/model_training.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
