@@ -38,7 +38,7 @@ class AIPlayer:
         for i in range(len(df_prediction)):
             
             try: 
-                df_prediction.loc[i, 'decoded_move'] = decode_move(df_prediction.loc[i, 'encoded_move'])
+                df_prediction.loc[i, 'decoded_move'] = decode_move(df_prediction.loc[i, 'encoded_move'], board)
             except:
                 pass
         
