@@ -1,9 +1,11 @@
 import pygame 
 import chess 
 
-from chess_game.human_player import HumanPlayer, AIPlayer
+from chess_game.human_player import HumanPlayer
+from chess_game.ai_player import AIPlayer
 from chess_game.draw_board import draw_background, draw_pieces
 from utils import globals
+from keras.models import load_model
 
 #Initialize the variables
 SCREEN_WIDTH = 700
@@ -20,6 +22,9 @@ pygame.init()
 win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Chess')
 fps_clock = pygame.time.Clock()
+
+#Load the model
+model = load_model("move_prediction/saved_models/testing_model.h5")
 
 def reset():
     globals.board.reset()
@@ -57,10 +62,20 @@ while run:
                     print('The event: ' + str(event))
 
                     white.move(board=globals.board, event=event)
+                    
+                    if globals.board.is_checkmate():
+                        reset()
             
 
                 
     elif globals.white_move is False:
         
-        black.input_move(board=globals.board)
+        print(globals.board)
+        print(model)
+        predictions = black.predict_move(board=globals.board, model=model)
+        black.move(board=globals.board, predictions=predictions)
+        
+        if globals.board.is_checkmate():
+            reset()
+            
             
