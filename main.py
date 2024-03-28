@@ -70,8 +70,6 @@ while run:
                 
     elif globals.white_move is False:
         
-        print(globals.board)
-        print(model)
         predictions = black.predict_move(board=globals.board, model=model)
         black.move(board=globals.board, predictions=predictions)
         

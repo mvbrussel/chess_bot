@@ -12,7 +12,7 @@ import numpy as np
 import os
 import pandas as pd
 
-# #For running in the interactive terminal
+#For running in the interactive terminal
 # cwd = os.getcwd()
 # model_path = os.path.join(cwd, "../move_prediction/saved_models/testing_model.h5")
 # model = load_model(model_path)
@@ -26,7 +26,6 @@ class AIPlayer:
     def predict_move(self, board, model):        
         
         encoded_board = encode_board(board)
-        print('yes')
         #Reshape to input for predictions
         encoded_board = encoded_board.reshape(1,896)
         prediction = model(encoded_board).numpy().reshape(4672,)
@@ -52,6 +51,7 @@ class AIPlayer:
         #Filter the predictions to find only the legal mvoes
         legal_predictions = predictions[predictions['decoded_move'].isin(legal_moves)]
         
+        print(legal_predictions)
         max_idx = legal_predictions['probability'].idxmax()
         predicted_move = legal_predictions.loc[max_idx, 'decoded_move']
         
