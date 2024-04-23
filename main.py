@@ -3,6 +3,7 @@ import chess
 
 from chess_game.human_player import HumanPlayer
 from chess_game.ai_player import AIPlayer
+from chess_game.stockfish_player import StockfishPlayer
 from chess_game.draw_board import draw_background, draw_pieces
 from utils import globals
 from keras.models import load_model
@@ -14,7 +15,16 @@ SCREEN_HEIGHT = 600
 run = True 
 globals.white_move = True
 globals.board = chess.Board()
-white = HumanPlayer(colour='white')
+
+human_player = False
+
+#Select human or stockfish player
+if human_player is True:
+    white = HumanPlayer(colour='white')
+elif human_player is False:
+    white = StockfishPlayer(skill_level=10)
+
+#The bot is the AI player
 black = AIPlayer()
 
 #Initialize the game
@@ -40,7 +50,7 @@ while run:
     pygame.display.update()
     
 
-    if globals.white_move is True:
+    if globals.white_move is True and human_player is True:
         
         events = pygame.event.get()
 
@@ -65,8 +75,15 @@ while run:
                     
                     if globals.board.is_checkmate():
                         reset()
+                        run = False
             
-
+    elif globals.white_move is True and human_player is False:
+        
+        white.move(board=globals.board)
+        
+        if globals.board.is_checkmate():
+            reset()
+            run = False
                 
     elif globals.white_move is False:
         
@@ -75,5 +92,6 @@ while run:
         
         if globals.board.is_checkmate():
             reset()
+            run = False
             
             

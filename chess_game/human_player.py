@@ -88,27 +88,7 @@ class HumanPlayer:
 
         return '{}{}'.format(letter, number)
 
-class AIPlayer:
-    def __init__(self):
-        pass
-
-    def input_move(self, board):
-        
-        valid_proposed_move = False
-        
-        while valid_proposed_move is False:
-            
-            proposed_move_uci = input("Please enter a chess move in uci format: ")
-            
-            proposed_move = chess.Move.from_uci(proposed_move_uci)
-            
-            if proposed_move in board.legal_moves:
-                board.push(proposed_move)
-                globals.white_move = True
-                valid_proposed_move = True
-                
-    
-                
+             
             
                 
             

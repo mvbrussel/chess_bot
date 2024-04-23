@@ -4,7 +4,7 @@
 /cleaned_data.pkl
 models/saved_models/
 data/
-
+stockfish/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
