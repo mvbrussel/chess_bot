@@ -2,7 +2,7 @@
 /notes.txt
 /test_file.py
 /cleaned_data.pkl
-models/saved_models/
+move_prediction/saved_models/
 data/
 
 
