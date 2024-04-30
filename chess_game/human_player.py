@@ -29,7 +29,7 @@ class HumanPlayer:
         #When an empty square is clicked
         if piece is None: 
             
-            print('empty square clicked')
+            
             
             if globals.selected_square is not None:
             
@@ -46,9 +46,7 @@ class HumanPlayer:
         #When a black piece is clicked
         elif piece.symbol().islower() is True and globals.selected_square is not None:
         # elif piece.color == chess.BLACK and globals.selected_square is not None:
-            
-            print('black piece clicked')
-            
+                        
             #Check if valid move
             proposed_move_uci = globals.selected_square + square
             proposed_move = chess.Move.from_uci(proposed_move_uci)
@@ -63,7 +61,7 @@ class HumanPlayer:
         elif piece.symbol().isupper() is True:
         # elif piece.color == chess.WHITE:
             
-            print('white piece clicked')
+        
             
             globals.selected_piece = piece
             globals.selected_square = square

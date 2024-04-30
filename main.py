@@ -16,7 +16,7 @@ run = True
 globals.white_move = True
 globals.board = chess.Board()
 
-human_player = False
+human_player = True
 
 #Select human or stockfish player
 if human_player is True:
@@ -34,7 +34,7 @@ pygame.display.set_caption('Chess')
 fps_clock = pygame.time.Clock()
 
 #Load the model
-model = load_model("move_prediction/saved_models/initial_model.h5")
+model = load_model("move_prediction/saved_models/testing_model.h5")
 
 def reset():
     globals.board.reset()
@@ -68,9 +68,6 @@ while run:
                     reset()
                     
                 else:
-                    print('white making move')
-                    print('The event: ' + str(event))
-
                     white.move(board=globals.board, event=event)
                     
                     if globals.board.is_checkmate():

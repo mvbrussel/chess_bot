@@ -25,6 +25,8 @@ class AIPlayer:
     
     def predict_move(self, board, model):        
         
+        # print(board)
+        
         encoded_board = encode_board(board)
         #Reshape to input for predictions
         encoded_board = encoded_board.reshape(1,896)
@@ -50,8 +52,15 @@ class AIPlayer:
         
         #Filter the predictions to find only the legal mvoes
         legal_predictions = predictions[predictions['decoded_move'].isin(legal_moves)]
+        legal_predictions = legal_predictions.sort_values(by='probability', ascending=False).reset_index(drop=True)
         
-        print(legal_predictions)
+        #For printing
+        # print(legal_predictions.head(10))
+        predictions = predictions.sort_values(by='probability', ascending=False).reset_index(drop=True)
+        print(predictions.head(10))
+        
+        
+        #Continued code
         max_idx = legal_predictions['probability'].idxmax()
         predicted_move = legal_predictions.loc[max_idx, 'decoded_move']
         
