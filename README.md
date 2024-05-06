@@ -1,4 +1,4 @@
-# Chess AI
+# Chess AI - Work in Progress
 
 This project provides an application in which you can play chess against a trained AI model. It comes with an interactive chess interface where you can make moves and a trained model on 10M+ observations which you play against.
 
