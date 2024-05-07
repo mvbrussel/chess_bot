@@ -6,6 +6,10 @@ This project provides an application in which you can play chess against a train
 ## Usage
 
 <!-- Provide detailed instructions on how to set up the project on a local machine. This includes any necessary dependencies, software requirements, and installation steps. Make sure to include clear and concise instructions so that others can easily replicate your setup. -->
+- Clone the repository to your local machine
+- Create a pip environment and install the packages using `pip install -r requirements.txt`
+- Run the `main.py` file to start the application
+
 
 ## Repository structure
 
@@ -15,6 +19,8 @@ This project provides an application in which you can play chess against a train
 - [utils](https://github.com/mvbrussel/chess_bot/tree/master/utils): utility functions that are used accross the project
 
 ## Data
+
+Due to the file size, the source and cleaned data is not available in the repository. Please contact me to obtain the data if needed.
 
 ### Source data
 A dataset is created from [Lichess](https://database.lichess.org/) data. PGN data of +1M chess games is downloaded from which the FEN position of the board is derived. With this, the move made for a specific board FEN can be derived
@@ -29,8 +35,6 @@ It results in a board position represented with an (8,8,119) shaped array and th
 Several model structures were implemented with the optimal result obtained with a Neural Network consisting of five layers. Details can be found in the model_training notebook
 
 <!-- Placeholder for screenshot of model -->
-
-## Result
 
 ## Contact
 If you have any questions or suggestions, feel free to reach out
