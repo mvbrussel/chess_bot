@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+from utils import globals
 
 # from globals import board_colour, square_size
 # import globals
@@ -50,6 +51,14 @@ restart = pygame.transform.scale(restart, (40, 40))
 FROM_COLOUR = (187, 203, 61)
 TO_COLOUR = (246, 246, 127)
 
+
+
+def pixel_to_square_index(pixel_coords):
+    # Convert pixel coordinates to square indices
+    x = pixel_coords[0] // square_size
+    y = pixel_coords[1] // square_size
+    return x, y
+
 def draw_background(win):
     win.fill((255, 255, 255))
 
@@ -58,11 +67,14 @@ def draw_background(win):
             if (x % 2 == 1 and y % 2 == 0) or (x % 2 == 0 and y % 2 == 1):
                 pygame.draw.rect(win, board_colour, (x * square_size, y * square_size, square_size, square_size))
     
-    # if globals.from_square:
-    #     pygame.draw.rect(win, FROM_COLOUR, (globals.from_square[0] * square_size, globals.from_square[1] * square_size, square_size, square_size))
+    if globals.from_square:
+        from_x, from_y = pixel_to_square_index(globals.from_square)
+        pygame.draw.rect(win, FROM_COLOUR, (from_x * square_size, from_y * square_size, square_size, square_size))
 
-    # if globals.to_square:
-    #     pygame.draw.rect(win, TO_COLOUR, (globals.to_square[0] * square_size, globals.to_square[1] * square_size, square_size, square_size))
+    if globals.to_square:
+        to_x, to_y = pixel_to_square_index(globals.to_square)
+        pygame.draw.rect(win, FROM_COLOUR, (to_x * square_size, to_y * square_size, square_size, square_size))
+        
 
     win.blit(switch, (625, 200))
     win.blit(restart, (630, 320))

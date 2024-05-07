@@ -17,6 +17,15 @@ import pandas as pd
 # model_path = os.path.join(cwd, "../move_prediction/saved_models/testing_model.h5")
 # model = load_model(model_path)
 
+def algebraic_to_pixel_coords(algebraic_notation):
+    # Convert algebraic notation to square indices
+    column_map = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7}
+    column = column_map[algebraic_notation[0]]
+    row = int(algebraic_notation[1]) - 1  # Rows are 0-indexed
+    # Calculate pixel coordinates of the center of the square
+    x = (column + 0.5) * 75
+    y = (7 - row + 0.5) * 75  # Flip the y-coordinate because the origin is at the top-left
+    return x, y
 
 
 
@@ -65,7 +74,13 @@ class AIPlayer:
         predicted_move = legal_predictions.loc[max_idx, 'decoded_move']
         
         board.push(predicted_move)
-        globals.white_move = True      
+        globals.white_move = True  
+        
+        #For coloring the board
+        from_square_uci = chess.square_name(predicted_move.from_square)
+        to_square_uci = chess.square_name(predicted_move.to_square)
+        globals.from_square = algebraic_to_pixel_coords(from_square_uci)
+        globals.to_square = algebraic_to_pixel_coords(to_square_uci)
         
         
         pass

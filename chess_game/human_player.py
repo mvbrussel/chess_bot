@@ -17,7 +17,8 @@ class HumanPlayer:
         
        
         #Get the corresponding square
-        square = self.coordinates_to_square(coords=pygame.mouse.get_pos())
+        coords=pygame.mouse.get_pos()
+        square = self.coordinates_to_square(coords=coords)
         
         #Convert the string representation to a square
         parsed_square = chess.parse_square(square)
@@ -28,8 +29,6 @@ class HumanPlayer:
         
         #When an empty square is clicked
         if piece is None: 
-            
-            
             
             if globals.selected_square is not None:
             
@@ -42,6 +41,8 @@ class HumanPlayer:
                     globals.white_move = False
                     globals.selected_piece = None
                     globals.selected_square = None
+                    
+                    globals.to_square = coords
             
         #When a black piece is clicked
         elif piece.symbol().islower() is True and globals.selected_square is not None:
@@ -56,15 +57,19 @@ class HumanPlayer:
                 globals.white_move = False
                 globals.selected_piece = None
                 globals.selected_square = None
+                
+                globals.to_square = coords
         
         #Select a new piece if a white piece is clicked
         elif piece.symbol().isupper() is True:
-        # elif piece.color == chess.WHITE:
-            
+        # elif piece.color == chess.WHITE:           
         
             
             globals.selected_piece = piece
             globals.selected_square = square
+            
+            globals.from_square = coords
+            globals.to_square = None
          
              
         return

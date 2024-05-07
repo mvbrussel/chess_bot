@@ -7,3 +7,6 @@ board = None
 white_move = None
 selected_square = None
 selected_piece = None
+
+from_square = None
+to_square = None
