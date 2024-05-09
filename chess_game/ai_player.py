@@ -1,4 +1,4 @@
-# Loading packages
+# Loading modules
 from keras.models import load_model
 import chess
 import numpy as np
@@ -19,6 +19,8 @@ from utils import globals
 # model = load_model(model_path)
 
 
+#! Functions: add variable types, add overall description according to best practices
+#! Move to draw board file
 def algebraic_to_pixel_coords(algebraic_notation):
     # Convert algebraic notation to square indices
     column_map = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7}
@@ -33,10 +35,29 @@ def algebraic_to_pixel_coords(algebraic_notation):
 
 
 class AIPlayer:
+    def __init__(self):
+        pass
+
     def predict_move(self, board, model):
+        """
+        Predict the optimal move given a board position and trained model
+
+        Args:
+            board (chess.Board): the current board position
+            model: trained model
+
+        Returns:
+            dataframe with the variables:
+                all possible encoded moves
+                corresponding decoded moves
+                predicted probability of each move
+        """
+
         # Reshape to input for predictions
         encoded_board = encode_board(board)
         encoded_board = encoded_board.reshape(1, 896)
+
+        # Obtain the predictions
         prediction = (
             model(encoded_board)
             .numpy()
@@ -45,6 +66,7 @@ class AIPlayer:
             )
         )
         df_prediction = pd.DataFrame(prediction, columns=["probability"])
+        #! Check if this is correct
         df_prediction["encoded_move"] = df_prediction.index + 1
 
         # Adding the decoded moves
@@ -60,30 +82,36 @@ class AIPlayer:
         return df_prediction
 
     def move(self, board, predictions):
+        """
+        Determine the optimal move to make given the model predictions, and make the move on the globally defined board variable
+
+        Args:
+            board (chess.Board): the current board position
+            predictions (dataframe): dataframe with the predicted probability of all possible moves
+                all possible encoded moves
+                corresponding decoded moves
+                predicted probability of each move
+
+        """
+
         # Find all valid moves
         legal_moves = list(board.legal_moves)
 
-        # Filter the predictions to find only the legal mvoes
+        # Filter the predictions to find only the legal moves and sort on probability
         legal_predictions = predictions[predictions["decoded_move"].isin(legal_moves)]
         legal_predictions = legal_predictions.sort_values(
             by="probability", ascending=False
         ).reset_index(drop=True)
 
-        # For printing
-        # print(legal_predictions.head(10))
-        predictions = predictions.sort_values(
-            by="probability", ascending=False
-        ).reset_index(drop=True)
-        print(predictions.head(10))
-
-        # Continued code
+        # Find and make the optimal move
         max_idx = legal_predictions["probability"].idxmax()
         predicted_move = legal_predictions.loc[max_idx, "decoded_move"]
-
         board.push(predicted_move)
-        globals.white_move = True
 
+        # Update global variables
+        globals.white_move = True
         # For coloring the board
+        #! Move parts to draw_board file
         from_square_uci = chess.square_name(predicted_move.from_square)
         to_square_uci = chess.square_name(predicted_move.to_square)
         globals.from_square = algebraic_to_pixel_coords(from_square_uci)

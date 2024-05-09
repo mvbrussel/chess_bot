@@ -34,7 +34,7 @@ pygame.display.set_caption('Chess')
 fps_clock = pygame.time.Clock()
 
 #Load the model
-model = load_model("move_prediction/saved_models/testing_model.h5")
+model = load_model("move_prediction/implemented_model.h5")
 
 def reset():
     globals.board.reset()
