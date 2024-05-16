@@ -31,14 +31,11 @@ To make the data understandable for the neural network, it needs to be encoded. 
 It results in a board position represented with an (8,8,119) shaped array and the moves represented with an (4672) array. This is the input used for training the model
 
 ## Model and results
-
-*Currently working on improvements of both the model and data*
+*Work in progress, information on the current best model shown*
 
 Several model structures were implemented with the optimal result obtained with a Neural Network consisting of five layers. Details can be found in the model_training notebook
 
-The interface in which the game is played
-
-![chess_game_screenshot](chess_game\images\chess_game_screenshot.png)
+![chess_game_screenshot](chess_game/images/chess_game_screenshot.png)
 
 
 The AI is tested on 4 different levels of the Stockfish engine (ranging from 0 to 20), by playing 10 games at each level and obtaining the percentage of wins. 
