@@ -30,11 +30,31 @@ To make the data understandable for the neural network, it needs to be encoded. 
 
 It results in a board position represented with an (8,8,119) shaped array and the moves represented with an (4672) array. This is the input used for training the model
 
-## Model
+## Model and results
+
+*Currently working on improvements of both the model and data*
 
 Several model structures were implemented with the optimal result obtained with a Neural Network consisting of five layers. Details can be found in the model_training notebook
 
-<!-- Placeholder for screenshot of model -->
+The interface in which the game is played
+
+![chess_game_screenshot](chess_game\images\chess_game_screenshot.png)
+
+
+The AI is tested on 4 different levels of the Stockfish engine (ranging from 0 to 20), by playing 10 games at each level and obtaining the percentage of wins. 
+
+| Stockfish engine level | Perentage games won | 
+|----------|----------|
+| 0 | 60% | 
+| 5 | 20% | 
+| 10 | 0% | 
+| 20 | 0% | 
+
+As can be seen above, there is room to improve the performance. Current improvements that are being worked on:
+
+- Increase the number of observations. Given the complexity of the game of chess, 10M observation is still limited
+- Obtain data from the StockFish engine instead of Lichess. Lichess uses information of games played, meaning that not every move is a strong one. By playing high skill-level stockfish engines against eachother and saving the moves, a higher-quality dataset can be obtained
+- Improving the NN architecture. Adding convolutional layers to the NN and further finetuning the number of layers and parameters
 
 ## Contact
 If you have any questions or suggestions, feel free to reach out
