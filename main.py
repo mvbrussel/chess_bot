@@ -13,7 +13,7 @@ from utils.reset_game import reset
 
 # Set whether the stockfish engine or human player is used
 human_player = False
-stockfish_skill = 20
+stockfish_skill = 0
 
 # Initialize the variables
 SCREEN_WIDTH = 700
