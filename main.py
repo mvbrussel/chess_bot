@@ -16,13 +16,13 @@ run = True
 globals.white_move = True
 globals.board = chess.Board()
 
-human_player = True
+human_player = False
 
 #Select human or stockfish player
 if human_player is True:
     white = HumanPlayer(colour='white')
 elif human_player is False:
-    white = StockfishPlayer(skill_level=10)
+    white = StockfishPlayer(skill_level=5)
 
 #The bot is the AI player
 black = AIPlayer()
@@ -34,7 +34,7 @@ pygame.display.set_caption('Chess')
 fps_clock = pygame.time.Clock()
 
 #Load the model
-model = load_model("move_prediction/implemented_model.h5")
+model = load_model("move_prediction/saved_models/initial_model.h5")
 
 def reset():
     globals.board.reset()
@@ -71,6 +71,7 @@ while run:
                     white.move(board=globals.board, event=event)
                     
                     if globals.board.is_checkmate():
+                        print("White won")
                         reset()
                         run = False
             
@@ -79,6 +80,7 @@ while run:
         white.move(board=globals.board)
         
         if globals.board.is_checkmate():
+            print("White won")
             reset()
             run = False
                 
@@ -88,6 +90,7 @@ while run:
         black.move(board=globals.board, predictions=predictions)
         
         if globals.board.is_checkmate():
+            print("Black won")
             reset()
             run = False
             
