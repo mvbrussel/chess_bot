@@ -32,3 +32,11 @@ def encode_board(board: chess.Board) -> np.array:
  array[:, :, 13] = board.is_repetition(3)
 
  return array
+
+def encode_board_from_fen(fen: str) -> np.array:
+    """Encode a board position from fen format"""
+    
+    board = fen_to_board(fen)
+    array = encode_board(board)
+    
+    return array

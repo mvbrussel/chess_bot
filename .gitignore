@@ -3,7 +3,9 @@
 /test_file.py
 /cleaned_data.pkl
 move_prediction/saved_models/
-data/
+data/cleaned_data
+data/lichess_game_data.db
+data/stockfish_generated_data
 
 
 
