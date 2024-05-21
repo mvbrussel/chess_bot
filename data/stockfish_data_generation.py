@@ -81,9 +81,10 @@ def mineGames(numGames : int):
   currentGamePositions = []
   board = chess.Board()
   stockfish.set_position([])
+  
+  print(i)
 
   for i in range(MAX_MOVES):
-   print(i)
    #randomly choose from those 3 moves
    moves = stockfish.get_top_moves(3)
    #if less than 3 moves available, choose first one, if none available, exit
@@ -112,4 +113,4 @@ def mineGames(numGames : int):
 
   saveData(currentGameMoves, currentGamePositions)
   
-mineGames(10)
+mineGames(10000)

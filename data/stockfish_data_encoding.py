@@ -12,12 +12,14 @@ from utils.board_encoding import encode_board_from_fen
 
 #function to encode all moves and positions from rawData folder
 def encodeAllMovesAndPositions():
+    
     board = chess.Board() #this is used to change whose turn it is so that the encoding works
     board.turn = False #set turn to black first, changed on first run
 
     #find all files in folder:
     files = os.listdir('stockfish_generated_data/raw_data')
     for idx, f in enumerate(files):
+        print(idx)
         movesAndPositions = np.load(f'stockfish_generated_data/raw_data/{f}', allow_pickle=True)
         moves = movesAndPositions[:,0]
         positions = movesAndPositions[:,1]
@@ -53,29 +55,3 @@ encodeAllMovesAndPositions()
 
 #dataset
 
-#loading training data
-
-allMoves = []
-allBoards = []
-FRACTION_OF_DATA = 1
-
-files = os.listdir('stockfish_generated_data/prepared_data')
-numOfEach = len(files) // 2 # half are moves, other half are positions
-
-for i in range(numOfEach):
-    try:
-        moves = np.load(f"stockfish_generated_data/prepared_data/moves{i}.npy", allow_pickle=True)
-        boards = np.load(f"stockfish_generated_data/prepared_data/positions{i}.npy", allow_pickle=True)
-        if (len(moves) != len(boards)):
-            print("ERROR ON i = ", i, len(moves), len(boards))
-        allMoves.extend(moves)
-        allBoards.extend(boards)
-    except:
-        print("error: could not load ", i, ", but is still going")
-
-allMoves = np.array(allMoves)[:(int(len(allMoves) * FRACTION_OF_DATA))]
-allBoards = np.array(allBoards)[:(int(len(allBoards) * FRACTION_OF_DATA))]
-assert len(allMoves) == len(allBoards), "MUST BE OF SAME LENGTH"
-
-#flatten out boards
-# allBoards = allBoards.reshape(allBoards.shape[0], -1)
