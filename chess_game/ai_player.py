@@ -55,7 +55,9 @@ class AIPlayer:
 
         # Reshape to input for predictions
         encoded_board = encode_board(board)
-        encoded_board = encoded_board.reshape(1, 896)
+        # encoded_board = encoded_board.reshape(1, 896)
+        encoded_board = encoded_board.reshape(1, 8, 8, 14)
+        
 
         # Obtain the predictions
         prediction = (
@@ -67,7 +69,8 @@ class AIPlayer:
         )
         df_prediction = pd.DataFrame(prediction, columns=["probability"])
         #! Check if this is correct
-        df_prediction["encoded_move"] = df_prediction.index + 1
+        # df_prediction["encoded_move"] = df_prediction.index + 1
+        df_prediction["encoded_move"] = df_prediction.index
 
         # Adding the decoded moves
         df_prediction["decoded_move"] = ""

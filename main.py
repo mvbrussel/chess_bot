@@ -13,7 +13,7 @@ from utils.reset_game import reset
 
 # Set whether the stockfish engine or human player is used
 human_player = False
-stockfish_skill = 0
+stockfish_skill = 1
 
 # Initialize the variables
 SCREEN_WIDTH = 700
@@ -35,7 +35,7 @@ pygame.display.set_caption("Chess")
 fps_clock = pygame.time.Clock()
 
 # Load the model
-model = load_model("move_prediction/saved_models/initial_model.h5")
+model = load_model("move_prediction/saved_models/01_initial_model.h5")
 
 # Start the game
 while run:
